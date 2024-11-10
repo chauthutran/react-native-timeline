@@ -22,7 +22,8 @@
       "package": "com.tranchau1984.reactnativetimeline"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
