@@ -3,6 +3,7 @@ import Loading from '../basics/Loading';
 import * as mongodb from '@/app/scripts/mongodbService';
 import MultiSelectDropdown from '../basics/MultiSelectDropdown';
 import { JSONObject } from '@/types/definations';
+import { Text, View } from 'react-native';
 
 
 export default function OrgUnitSelector({
@@ -33,5 +34,5 @@ export default function OrgUnitSelector({
 
     return (
 		<MultiSelectDropdown options={list} placeholder="O.Unit" onChange={(selectedItems) => {onItemSelected(selectedItems)}} />
-    );
+    )
 }
