@@ -1,25 +1,22 @@
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function Loading({ size = "small" }: { size?: "large" | "small" }) {
-
-    return (
-        <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, styles.horizontal]}>
-                <ActivityIndicator size={size} color="#0000ff" />
-            </SafeAreaView>
-        </SafeAreaProvider>
-    )
+  return (
+    <SafeAreaProvider>
+      <View style={styles.overlay}>
+        <ActivityIndicator size={size} color="#0000ff" />
+      </View>
+    </SafeAreaProvider>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10,
-    },
+  overlay: {
+    ...StyleSheet.absoluteFillObject, // Covers the entire screen
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+    zIndex: 10, // Stays above other components
+  },
 });

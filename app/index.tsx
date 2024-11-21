@@ -4,10 +4,8 @@ import "./../global.css";
 
 export default function Page() {
   return (
-    <View className="">
-      <View className="">
+    <View className="w-full">
         <HomePage />
-      </View>
     </View>
   );
 }
