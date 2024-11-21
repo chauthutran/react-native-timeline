@@ -23,16 +23,16 @@ export default function MultiSelectDropdown({
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<JSONObject[]>([]);
 
-    const toggleDropdown = () => setIsOpen((prev) => !prev);
+    const toggleDropdown = () => setIsOpen((prev: boolean) => !prev);
 
     const handleOptionClick = (option: JSONObject) => {
         const alreadySelected = selectedOptions.find(
-            (o) => o._id === option._id
+            (o: JSONObject) => o._id === option._id
         );
 
         if (alreadySelected) {
             const updatedOptions = selectedOptions.filter(
-                (o) => o._id !== option._id
+                (o: JSONObject) => o._id !== option._id
             );
             setSelectedOptions(updatedOptions);
             onChange?.(updatedOptions);
@@ -45,7 +45,7 @@ export default function MultiSelectDropdown({
 
     const removeSelectedItem = (option: JSONObject) => {
         const updatedOptions = selectedOptions.filter(
-            (o) => o._id !== option._id
+            (o: JSONObject) => o._id !== option._id
         );
         setSelectedOptions(updatedOptions);
         onChange?.(updatedOptions);
@@ -66,7 +66,7 @@ export default function MultiSelectDropdown({
                 {/* Render selected options inside the parent View */}
                 <View style={styles.selectedItemsContainer}>
                     {selectedOptions.length > 0 ? (
-                        selectedOptions.map((option) => (
+                        selectedOptions.map((option: JSONObject) => (
                             <View key={option._id} style={styles.selectedItem}>
                                 <Text style={styles.selectedItemText}>
                                     {option.name}
@@ -92,15 +92,15 @@ export default function MultiSelectDropdown({
                     onPress={() => setIsOpen(false)}
                 >
                     <View style={styles.dropdown}>
-                        <FlatList
+                        <FlatList<JSONObject>
                             data={options}
-                            keyExtractor={(item) => item._id}
-                            renderItem={({ item }) => (
+                            keyExtractor={(item: JSONObject) => item._id}
+                            renderItem={({ item }: { item: JSONObject }) => (
                                 <TouchableOpacity
                                     style={[
                                         styles.option,
                                         selectedOptions.find(
-                                            (o) => o._id === item._id
+                                            (o: JSONObject) => o._id === item._id
                                         )
                                             ? styles.optionSelected
                                             : null
