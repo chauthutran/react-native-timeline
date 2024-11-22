@@ -169,11 +169,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     dropdown: {
-        // width: '80%',
-        // maxHeight: '60%',
-        // backgroundColor: '#fff',
-        // borderRadius: 10,
-        // padding: 10
         backgroundColor: '#fff',
         borderRadius: 10,
         width: '80%',

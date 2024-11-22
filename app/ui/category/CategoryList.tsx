@@ -26,15 +26,17 @@ export default function CategoryList() {
     }, []);
 
     
-    if( list === null ) return (<Loading />);
+    if( list === null ) 
+        return (<Loading />);
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        // <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        // <ScrollView>
             <View className="flex flex-row flex-wrap">
                 {list.map((category: JSONObject, idx: number) => (
                     <CategoryListItem key={category._id} data={category} />
                 ))}
             </View>
-        </ScrollView>
+        // </ScrollView>
     )
 }

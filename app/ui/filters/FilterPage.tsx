@@ -24,40 +24,40 @@ const FilterPage = ({
 
     return (
         <ScrollView
-      style={styles.container}
-      contentContainerStyle={{ flexGrow: 1 }}
-      showsVerticalScrollIndicator={true}  // To always show the scrollbar
-	  scrollEnabled ={true}
-    >
-		<Text >More content ...</Text>
-		
-      {/* Orgunit Filter */}
-      <Text style={styles.filterLabel}>Select Orgunit</Text>
-      <OrgUnitSelector
-        onItemSelected={(selectedItems: JSONObject[]) =>
-          setSelectedOrgunits(selectedItems)
-        }
-      />
+            style={styles.container}
+            contentContainerStyle={{ flexGrow: 1 }}
+            showsVerticalScrollIndicator={true} // To always show the scrollbar
+            scrollEnabled={true}
+        >
+			 {/* <View style={styles.container}> */}
+				{/* Orgunit Filter */}
+				<Text style={styles.filterLabel}>Select Orgunit</Text>
+				<OrgUnitSelector
+					onItemSelected={(selectedItems: JSONObject[]) =>
+						setSelectedOrgunits(selectedItems)
+					}
+				/>
 
-      {/* Year Filter */}
-      <Text style={styles.filterLabel}>Select Year</Text>
-      <YearSelector
-        onItemSelected={(selectedItems: JSONObject[]) =>
-          setSelectedYears(selectedItems)
-        }
-      />
+				{/* Year Filter */}
+				<Text style={styles.filterLabel}>Select Year</Text>
+				<YearSelector
+					onItemSelected={(selectedItems: JSONObject[]) =>
+						setSelectedYears(selectedItems)
+					}
+				/>
 
-      {/* SRHRJNeed Filter */}
-      <Text style={styles.filterLabel}>Select SRHRJ Need</Text>
-      <NeedSelector
-        onItemSelected={(selectedItems: JSONObject[]) =>
-          setSelectedNeeds(selectedItems)
-        }
-      />
+				{/* SRHRJNeed Filter */}
+				<Text style={styles.filterLabel}>Select SRHRJ Need</Text>
+				<NeedSelector
+					onItemSelected={(selectedItems: JSONObject[]) =>
+						setSelectedNeeds(selectedItems)
+					}
+				/>
 
-      {/* Apply Filters Button */}
-      <Button title="Apply Filters" onPress={handleApplyFilters} />
-    </ScrollView>
+				{/* Apply Filters Button */}
+				<Button title="Apply Filters" onPress={handleApplyFilters} />
+			{/* </View> */}
+        </ScrollView>
     );
 };
 
@@ -66,10 +66,11 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#fff'
-    }, extraContent: {
-		marginBottom: 10,
-		fontSize: 16,
-	  },
+    },
+    extraContent: {
+        marginBottom: 10,
+        fontSize: 16
+    },
     heading: {
         fontSize: 24,
         fontWeight: 'bold',
