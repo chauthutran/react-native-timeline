@@ -6,7 +6,7 @@ export default function HomePage() {
     return (
         <>
             <CategoryList />
-            {/* <Divider /> */}
+            <Divider />
             <FilterPage onApplyFilters={() => {} } />
         </>
     )
