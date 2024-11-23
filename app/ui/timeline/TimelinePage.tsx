@@ -1,8 +1,18 @@
 import { useCategory } from '@/app/contexts/CategoryContext';
 import { JSONObject } from '@/types/definations';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView } from 'react-native';
 import TimelineEvent from './TimelineEvent';
+import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import { useEvent } from '@/app/contexts/EventContext';
+import Loading from '../basics/Loading';
+import { RootStackParamList } from '@/types/types'; // Import the types
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+
+// Define the route params type for Timeline
+type TimelineRouteProp = RouteProp<RootStackParamList, "TimelinePage">;
+type TimelineNavigationProp = NativeStackNavigationProp<RootStackParamList, "TimelinePage">;
 
 const months = [
     'January',
@@ -19,7 +29,41 @@ const months = [
     'December'
 ];
 
-export default function TimelinePage({ events }: { events: JSONObject[] }) {
+// export default function TimelinePage({ events }: { events: JSONObject[] }) {
+export default function TimelinePage() {
+
+    const route = useRoute<TimelineRouteProp>(); // Use the route prop type
+    const navigation = useNavigation<TimelineNavigationProp>(); // Use the navigation prop type
+  
+    const { events, fetchEvents } = useEvent();
+
+
+    const { filterData } = route.params || {}; // Retrieve filter from navigation params
+    
+    const fetchData = async() => {
+        
+        const orgunitIds = filterData.orgUnits.map((item: JSONObject) => ({ "$oid": item._id}) );
+        const eventDateRanges = filterData.years.map((year: JSONObject) => (
+                                                    {
+                                                        "eventDate": {
+                                                            "$gte": {"$date":`${year._id}-01-01T00:00:00Z`},
+                                                            "$lte": {"$date":`${year._id}-12-31T00:00:00Z`}
+                                                        }
+                                                    }));
+        const payload = {
+            "orgunitId": { "$in": orgunitIds },
+            "$or": eventDateRanges,
+            "SRHRJNeed": { "$in": filterData.needs.map((item: JSONObject) => item._id) }
+        };
+        
+        await fetchEvents(payload);
+    }
+    
+    useEffect(() => {
+        fetchData();
+    }, []);
+    
+    if( events === null ) return ( <Loading /> );
     
     // Group events by month
     const groupedEvents = events.reduce(

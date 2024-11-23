@@ -33,7 +33,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 	const [error, setError] = useState<string | null>(null);
 	const [processStatus, setProcessStatus] = useState<string>("");
 
-
+console.log("==== CategoryProvider");
 	const fetchCategories = async() => {
 		setProcessStatus(Constant.RESPONSE_FETCH_CATEGORY_REQUEST);
 		setError(null);
@@ -50,6 +50,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 	};
 	
 	useEffect(() => {
+		console.log(" ========= categories", categories);
 		if( categories === null ) {
 			fetchCategories();
 		}
