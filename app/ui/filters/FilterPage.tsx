@@ -18,7 +18,7 @@ const FilterPage = ({
         onApplyFilters({
             orgUnits: selectedOrgunits,
             years: selectedYears,
-            SRHRJNeeds: selectedNeeds
+            needs: selectedNeeds
         });
     };
 
